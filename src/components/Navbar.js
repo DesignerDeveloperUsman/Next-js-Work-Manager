@@ -24,8 +24,8 @@ function Navbar() {
             </div>
             <div >
                 <ul className='flex space-x-3'>
-                    <li>LogIn</li>
-                    <li>SignUp</li>
+                    <li><Link href="/login">LogIn</Link></li>
+                    <li><Link href="/signup">SignUp</Link></li>
                 </ul>
             </div>
         </div>
