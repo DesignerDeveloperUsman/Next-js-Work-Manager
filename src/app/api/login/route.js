@@ -5,31 +5,57 @@ import bcrypt from "bcryptjs";
 export async function POST(req) {
     const { email, password } = await req.json();
     try {
-        // 1. find user by email 
+        // 1.get user
         const user = await User.findOne({
             email: email,
-        })
+        });
+
         if (user == null) {
-            throw new Error("This email not exist")
+            throw new Error("user not found !!");
         }
-        // 2. compare password by user and in User  
-        const compare = bcrypt.compareSync(password, user.password);
-        if (!compare) {
-            throw new Error("Password Not Match")
+
+        // 2.password check
+        const matched = bcrypt.compareSync(password, user.password);
+        if (!matched) {
+            throw new Error("Password not matched !!");
         }
-        // 3. Genrate Token 
-        const token = jwt.sign({
-            _id: user._id,
-            name: user.name
-        }, process.env.JWT_KEY)
-        return NextResponse.json({
-            message: true
-        })
+
+        // 3. generate token
+
+        const token = jwt.sign(
+            {
+                _id: user._id,
+                name: user.name,
+            },
+            process.env.JWT_KEY
+        );
+
+        // 4.create nextresponse-- cookie
+
+        const response = NextResponse.json({
+            message: "Login success !!",
+            success: true,
+            user: user,
+        });
+
+        response.cookies.set("authToken", token, {
+            expiresIn: "1d",
+            httpOnly: true,
+        });
+
+        console.log(user);
         console.log(token);
+
+        return response;
     } catch (error) {
-        return NextResponse.json({
-            message: error.message,
-            success: false
-        })
+        return NextResponse.json(
+            {
+                message: error.message,
+                success: false,
+            },
+            {
+                status: 500,
+            }
+        );
     }
 }

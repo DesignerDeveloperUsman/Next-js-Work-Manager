@@ -1,11 +1,13 @@
 "use client"
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import signUp from "../../assets/signup.svg";
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { serviceSignUp } from '@/services/userServices';
 function SignUp() {
+    const navigate = useRouter();
     const [data, setData] = useState({
         name: "",
         email: "",
@@ -43,7 +45,8 @@ function SignUp() {
                 password: "",
                 about: "",
                 profileUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-            })
+            });
+            navigate.push("/login")
         } catch (error) {
             toast.error("user fail", {
                 position: 'top-center'

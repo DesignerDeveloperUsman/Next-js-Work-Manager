@@ -1,33 +1,52 @@
 "use client"
+import { logInService } from "@/services/logInService";
 import signUp from "../../assets/signup.svg";
 import Image from 'next/image';
 import Link from "next/link";
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import UserContext from "@/context/userContext";
+import { connectDb } from "@/helper/db";
 function LoginForm() {
-    const [data, setData] = useState({
+    connectDb()
+    const context = useContext(UserContext)
+    const router = useRouter()
+    const [loginData, setloginData] = useState({
         password: "",
         email: ""
     })
     const clean = () => {
-        setData({
+        setloginData({
             password: "",
             email: ""
         })
     }
-    const loginSubmit = (e) => {
+    const loginSubmit = async (e) => {
         e.preventDefault();
-        if (data.password.trim() === "") {
+        if (loginData.password.trim() === "") {
             toast.warn("Password is essintial", {
                 position: "top-center"
             })
             return
         }
-        if (data.password.length < 5) {
+        if (loginData.password.length < 5) {
             toast.error("password contain more than 5 words", {
                 position: "top-center"
             })
             return
+        }
+        try {
+            const result = await logInService(loginData)
+            console.log(result);
+            toast.success("logged in")
+            context.setUser(result.user)
+            router.push("/profile")
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message, {
+                position: "top-center"
+            })
         }
     }
     return (
@@ -45,12 +64,12 @@ function LoginForm() {
                             name="user_email"
                             onChange={
                                 (e) =>
-                                    setData({
-                                        ...data,
+                                    setloginData({
+                                        ...loginData,
                                         email: e.target.value
                                     })
                             }
-                            value={data.email}
+                            value={loginData.email}
                             placeholder='Enter Your Email'
                             type="email" className="w-full p-2.5 rounded-lg bg-gray-800 border-gray-800" id="user_email" />
                     </div>
@@ -61,12 +80,12 @@ function LoginForm() {
                             name="user_password"
                             onChange={
                                 (e) =>
-                                    setData({
-                                        ...data,
+                                    setloginData({
+                                        ...loginData,
                                         password: e.target.value
                                     })
                             }
-                            value={data.password}
+                            value={loginData.password}
                             placeholder='Enter Your Password'
                             type="password" className="w-full p-2.5 rounded-lg bg-gray-800 border-gray-800" id="user_password" />
                     </div>

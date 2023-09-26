@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs"
 connectDb();
 export async function GET() {
     let users = [];
-    users = await User.find()
+    users = await User.find().select("-password")
     return NextResponse.json(users)
 }
 // create user object with user panel 

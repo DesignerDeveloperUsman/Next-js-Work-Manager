@@ -1,7 +1,25 @@
 "use client"
+import UserContext from '@/context/userContext'
+import { logOutUser } from '@/services/userServices'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useContext } from 'react'
+import { toast } from 'react-toastify'
 function Navbar() {
+    const context = useContext(UserContext)
+    const router = useRouter()
+    const doLogout = async () => {
+        try {
+            const result = await logOutUser()
+            // console.log(result);
+            context.setUser(undefined)
+            router.push("/")
+        } catch (error) {
+            console.log(error);
+            toast.error("error in logout")
+        }
+    }
+    console.log(context);
     return (
         <div className='bg-blue-600 flex justify-between px-36 text-yellow items-center h-16'>
             <div>
@@ -11,21 +29,46 @@ function Navbar() {
             </div>
             <div>
                 <ul className='flex space-x-5'>
-                    <li>
-                        <Link href={"/"} className='hover:text-blue-red-200'>Home</Link>
-                    </li>
-                    <li>
-                        <Link href="/add-task">Add Task</Link>
-                    </li>
-                    <li>
-                        <Link href="/show-task">Show Task</Link>
-                    </li>
+                    {
+                        context.user && (
+                            <>
+                                <li>
+                                    <Link href={"/"} className="hover:text-blue-200">
+                                        Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/add-task" className="hover:text-blue-200">
+                                        Add Task
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={"/show-task"} className="hover:text-blue-200">
+                                        Show Tasks
+                                    </Link>
+                                </li>
+                            </>
+                        )
+                    }
                 </ul>
             </div>
             <div >
                 <ul className='flex space-x-3'>
-                    <li><Link href="/login">LogIn</Link></li>
-                    <li><Link href="/signup">SignUp</Link></li>
+                    {
+                        context.user && (
+                            <>
+                                <li className="hover:text-blue-200"><Link href="#!">{context.user.name}</Link></li>
+                                <li className="hover:text-blue-200" ><button onClick={doLogout}>LogOut</button></li>
+                            </>
+                        )
+                    }
+                    {!context.user && (
+                        <>
+                            <li className="hover:text-blue-200"><Link href="/login">LogIn</Link></li>
+                            <li className="hover:text-blue-200"><Link href="/signup">SignUp</Link></li>
+                        </>
+                    )
+                    }
                 </ul>
             </div>
         </div>
