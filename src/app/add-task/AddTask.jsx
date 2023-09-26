@@ -11,7 +11,7 @@ function AddTask() {
         title: "",
         content: "",
         status: "none",
-        userId: "64f6dfcb91693d47499893ed"
+        userId: ""
     });
     const handleSubmit = async (e) => {
         e.preventDefault();

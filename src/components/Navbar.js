@@ -19,7 +19,7 @@ function Navbar() {
             toast.error("error in logout")
         }
     }
-    console.log(context);
+    // console.log(context);
     return (
         <div className='bg-blue-600 flex justify-between px-36 text-yellow items-center h-16'>
             <div>
