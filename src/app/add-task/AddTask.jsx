@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import login from "../../assets/login.svg";
 import Image from "next/image";
 import { addTask } from "@/services/taskService";
+import Task from "../show-task/Task";
 
 function AddTask() {
     // document.title = metadata.title;
@@ -102,3 +103,4 @@ function AddTask() {
 }
 
 export default AddTask;
+

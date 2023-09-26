@@ -7,9 +7,7 @@ import React, { useContext, useState } from 'react'
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import UserContext from "@/context/userContext";
-import { connectDb } from "@/helper/db";
 function LoginForm() {
-    connectDb()
     const context = useContext(UserContext)
     const router = useRouter()
     const [loginData, setloginData] = useState({

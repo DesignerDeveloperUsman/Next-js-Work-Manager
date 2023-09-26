@@ -2,7 +2,7 @@ import { Task } from "@/models/task";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken"
 export async function POST(request) {
-    const { title, content, userId } = await request.json();
+    const { title, content, userId, status } = await request.json();
     // fetching logged in user id 
     const authToken = request.cookies.get("authToken")?.value
     const data = jwt.verify(authToken, process.env.JWT_KEY)
@@ -11,6 +11,7 @@ export async function POST(request) {
         title,
         content,
         userId: data._id,
+        status
     });
     try {
         const createdTask = await task.save();
