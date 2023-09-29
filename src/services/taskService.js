@@ -7,3 +7,7 @@ export async function getUserTask(userId) {
     const result = await httpAxios.get(`/api/users/${userId}/tasks`, userId).then((response) => response.data)
     return result;
 }
+export async function deleteTask(taskId) {
+    const result = await httpAxios.delete(`/api/tasks/${taskId}`).then((response) => response.data)
+    return result;
+}

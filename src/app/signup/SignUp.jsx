@@ -135,8 +135,8 @@ function SignUp() {
                     <div className="mt-4 flex justify-center">
                         <button
                             type='submit'
-                            className="bg-green-600 rounded-lg py-2 px-8 hover:bg-green-400">Sign Up</button>
-                        <button type='button' onClick={clean} className="bg-red-600 ms-4 py-2 px-8 rounded-lg hover:bg-red-400">Clear</button>
+                            className="btn-own  bg-green-600 rounded-lg py-2 px-8 hover:bg-green-400">Sign Up</button>
+                        <button type='button' onClick={clean} className="btn-own bg-red-600 ms-4 py-2 px-8 rounded-lg hover:bg-red-400">Clear</button>
                     </div>
                     <div className="mt-4 text-sm flex justify-center">
                         <p className="mr-3 text-sm">Have an account ? </p>

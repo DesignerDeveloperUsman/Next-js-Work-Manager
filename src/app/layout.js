@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className=' text-white bg-black '>
+      <body className=' text-white bg-black flex-grow min-h-screen'>
         <div className={inter.className}>
           <UserProvider>
             <ToastContainer />

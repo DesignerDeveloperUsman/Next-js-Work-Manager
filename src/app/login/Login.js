@@ -91,10 +91,10 @@ function LoginForm() {
                     <div className="mt-4 flex justify-center">
                         <button
                             type='submit'
-                            className="bg-green-600 rounded-lg py-2 px-8 hover:bg-green-400">Log In</button>
+                            className="bg-green-600 rounded-lg btn-own py-2 px-8 hover:bg-green-400">Log In</button>
                         <button type='button'
                             onClick={clean}
-                            className="bg-red-600 ms-4 py-2 px-8 rounded-lg hover:bg-red-400">Clear</button>
+                            className="bg-red-600 btn-own ms-4 py-2 px-8 rounded-lg hover:bg-red-400">Clear</button>
                     </div>
                     {/* already sign in  */}
                     <div className="mt-4 text-sm flex justify-center">

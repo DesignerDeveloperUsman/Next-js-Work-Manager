@@ -90,8 +90,8 @@ function AddTask() {
                     </div>
                     {/* BUTTON  */}
                     <div className="mt-4 flex justify-center">
-                        <button className="bg-blue-600 rounded-lg py-3 px-2 hover:bg-blue-400">Add Task</button>
-                        <button className="bg-red-600 ms-4 py-3 px-2 rounded-lg hover:bg-red-400">Clear</button>
+                        <button className="bg-blue-600 rounded-lg py-3 px-2 hover:bg-blue-400 btn-own">Add Task</button>
+                        <button className="bg-red-600 ms-4 py-2 px-4 rounded-lg hover:bg-red-400 btn-own">Clear</button>
                     </div>
                     {/* {
                         JSON.stringify(task)
