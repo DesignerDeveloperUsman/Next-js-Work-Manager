@@ -1,12 +1,14 @@
 "use client"
 import UserContext from '@/context/userContext'
 import { logOutUser } from '@/services/userServices'
+import { ThreeCircles } from 'react-loader-spinner'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 function Navbar() {
     const context = useContext(UserContext)
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
     const doLogout = async () => {
         try {

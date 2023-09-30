@@ -5,9 +5,10 @@ import login from "../../assets/login.svg";
 import Image from "next/image";
 import { addTask } from "@/services/taskService";
 import Task from "../show-task/Task";
-
+import { useRouter } from "next/navigation";
 function AddTask() {
     // document.title = metadata.title;
+    const router = useRouter();
     const [task, setTask] = useState({
         title: "",
         content: "",
@@ -23,6 +24,7 @@ function AddTask() {
             toast.success("Successfully", {
                 position: "top-center"
             })
+            router.push("/show-task")
             setTask({
                 title: "",
                 content: "",
