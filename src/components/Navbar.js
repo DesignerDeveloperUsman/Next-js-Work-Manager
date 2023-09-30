@@ -21,7 +21,7 @@ function Navbar() {
     }
     // console.log(context);
     return (
-        <div className='bg-blue-600 sticky top-0 flex justify-between px-36 text-yellow items-center h-16'>
+        <div className='bg-blue-600 sticky top-0 flex justify-between px-36 text-yellow items-center  h-16'>
             <div>
                 <h1 className='text-2xl font-semibold'>
                     <a href="/">Work Manger</a>
