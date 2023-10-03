@@ -12,7 +12,7 @@ function UserProvider({ children }) {
                 setUser({ ...cUser })
             } catch (error) {
                 console.log(error);
-                toast.error("error to show user")
+                toast.warn("you are not logIn")
                 setUser(undefined)
             }
         }
