@@ -59,7 +59,7 @@ function Navbar() {
                     {
                         context.user && (
                             <>
-                                <li className="hover:text-blue-200"><Link href="#!">{context.user.name}</Link></li>
+                                <li className="hover:text-blue-200"><Link href="/profile">{context.user.name}</Link></li>
                                 <li className="hover:text-blue-200" ><button onClick={doLogout}>LogOut</button></li>
                             </>
                         )
