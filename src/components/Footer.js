@@ -21,7 +21,7 @@ const Footer = () => {
                     <FaInstagram size={30} color='yellow' />
                 </a>
             </div>
-            <div className="text-center mt-4">
+            <div className="text-center bg-blue-900 mt-4">
                 &copy; {currentYear} Usman Ali. All rights reserved.
             </div>
         </footer>
